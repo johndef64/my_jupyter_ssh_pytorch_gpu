@@ -26,7 +26,8 @@ RUN chmod 777 boot.sh
 
 RUN apt update && apt install  openssh-server sudo -y
 
-RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 user
+#RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 user
+RUN useradd -rm -d /home/jovyan -s /bin/bash -g root -G sudo -u 1000 user
 
 RUN echo 'user:Iknos2023' | chpasswd
 
