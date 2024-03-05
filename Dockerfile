@@ -17,10 +17,9 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 USER root
 
-RUN apt-get install -y sudo
-RUN echo "${NB_USER} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+#RUN apt-get install -y sudo
+#RUN echo "${NB_USER} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
-USER root
 COPY boot.sh .
 #COPY requirements.txt .
 RUN chmod 777 boot.sh
