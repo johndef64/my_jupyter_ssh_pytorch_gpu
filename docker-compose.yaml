@@ -1,3 +1,4 @@
+version: "3.9"
 services:
   test:
     build: .
@@ -6,7 +7,7 @@ services:
         reservations:
           devices:
             - driver: nvidia
-              device_ids: ['0']
+              count: 0
               capabilities: [gpu]
     ports:
       - "4444:8888"
