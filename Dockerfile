@@ -9,22 +9,24 @@ USER root
 
 RUN apt update && apt install  openssh-server sudo -y
 
+RUN pip install jupyterlab[all] -U
+RUN pip install jupyterlab[all] -U && \
+    pip install ipywidgets
+RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+
+
 RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 user
 
 RUN echo 'user:Iknos2023' | chpasswd
 
 RUN service ssh start
 
-RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
-RUN pip install jupyterlab[all] -U
-RUN pip install jupyterlab[all] -U && \
-    pip install ipywidgets
 
 EXPOSE 22
 #USER test
 #CMD ["./boot.sh"]
 
-CMD ["/bin/bash", "-c", "/usr/sbin/sshd && jupyter lab --ip='0.0.0.0' --port=8888 --no-browser --allow-root --notebook-dir=/workspace"]
+CMD ["/bin/bash", "-c", "/usr/sbin/sshd && jupyter lab --ip='0.0.0.0' --port=8888 --no-browser --allow-root --notebook-dir=/opt/data/"]
 
 #CMD ["/bin/bash", "-c", "/usr/sbin/sshd && jupyter lab --ip='0.0.0.0' --port=8888 --no-browser --allow-root --notebook-dir=/opt/data"]
 
