@@ -24,7 +24,7 @@ EXPOSE 22
 #USER test
 #CMD ["./boot.sh"]
 
-#CMD ["/bin/bash", "-c", "/usr/sbin/sshd && jupyter lab --ip='0.0.0.0' --port=8888 --no-browser --allow-root --notebook-dir=/workspace"]
+CMD ["/bin/bash", "-c", "/usr/sbin/sshd && jupyter lab --ip='0.0.0.0' --port=8888 --no-browser --allow-root --notebook-dir=/workspace"]
 
 #CMD ["/bin/bash", "-c", "/usr/sbin/sshd && jupyter lab --ip='0.0.0.0' --port=8888 --no-browser --allow-root --notebook-dir=/opt/data"]
 
