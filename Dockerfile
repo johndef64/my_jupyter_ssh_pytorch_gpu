@@ -5,7 +5,6 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 USER root
 COPY boot.sh .
-COPY requirements.txt .
 RUN chmod 777 boot.sh
 
 RUN apt update && apt install  openssh-server sudo -y
@@ -16,12 +15,15 @@ RUN echo 'user:Iknos2023' | chpasswd
 
 RUN service ssh start
 
-#RUN pip install -r requirements.txt
+RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 RUN pip install jupyterlab[all] -U
 RUN pip install jupyterlab[all] -U && \
     pip install ipywidgets
-RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 
 EXPOSE 22
 #USER test
-CMD ["./boot.sh"]
+#CMD ["./boot.sh"]
+CMD ["/bin/bash", "-c", "/usr/sbin/sshd && jupyter lab --ip='0.0.0.0' --port=8888 --no-browser --allow-root --notebook-dir=/opt/data"]
+
+#! /bin/bash
+#jupyter lab --ip 0.0.0.0 --port 8888 --no-browser --allow-root --notebook-dir=/opt/data & /usr/sbin/sshd -D
