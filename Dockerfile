@@ -4,8 +4,8 @@ FROM nvcr.io/nvidia/pytorch:23.03-py3
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 USER root
-COPY boot.sh .
-RUN chmod 777 boot.sh
+#COPY boot.sh .
+#RUN chmod 777 boot.sh
 
 RUN apt update && apt install  openssh-server sudo -y
 
